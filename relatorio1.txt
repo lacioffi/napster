@@ -1,0 +1,19 @@
+a) Nome e RA do participante
+
+Lucas Monteiro de Oliveira RA: 11002613
+
+b) Formato da mensagem transferida
+
+IP_DA_ORIGEM $$ ID_DO_PACOTE $$ MENSAGEM
+
+c) Explicação em “alto nível” do tratamento de mensagens fora de ordem.
+
+As mensagens são recebidas e armazenadas na ordem conforme chegam e são armazenadas no buffer. Após algum tempo uma outra função responsável por capturar a mensagem e fazer todos os tratamentos reordena o buffer levando em consideração o identificador sequencial da mensagem.
+
+d) Explicação em “alto nível” do tratamento de mensagens duplicadas.
+
+A função responsável por digerir a mensagem percorre o buffer deduplicando as mensagens no momento de interpretar o conteúdo recebido.
+
+e) Explicação em “alto nível” do consumo do buffer etratamento de mensagens perdidas.
+
+No momento de consumo do buffer a função valida se os pacotes estão seguinto uma ordem incremental (foram previamente reordenados), e caso haja algum buraco na sequência de das mensagens, a mesma é substituida por uma mensagem de erro no buffer.
